@@ -23,8 +23,10 @@ docker-compose up -d
 
 ### 3. Fazer o Deploy
 Faça a implantação da infraestrutura serverless no ambiente local:
-
+```bash
 serverless deploy --stage local
+```
+
 ### 🧪 Instruções de Teste
 Após o deploy, copie a URL base que apareceu no terminal (algo como http://localhost:4566/.../_user_request_) e execute os passos abaixo sequencialmente.
 
@@ -68,5 +70,7 @@ curl -s -X DELETE "$BASE_URL/items/COLE_SEU_ID_AQUI" | python3 -m json.tool
 
 ### 📦 Estrutura dos Arquivos
 serverless.yml: Configuração da infraestrutura (DynamoDB, SNS, Funções).
+
 handler.js: Lógica das funções Lambda (CRUD e Subscriber).
+
 docker-compose.yml: Configuração do container LocalStack.
