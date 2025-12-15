@@ -1,0 +1,16 @@
+{
+  "name": "etapa3-localstack",
+  "version": "1.0.0",
+  "description": "Opcao A - CRUD Serverless com SNS",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1450.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "serverless-localstack": "^1.3.1"
+  }
+}
