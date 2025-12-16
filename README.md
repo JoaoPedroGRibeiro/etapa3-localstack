@@ -38,7 +38,7 @@ export BASE_URL="SUA_URL_AQUI"
 # Exemplo: export BASE_URL="http://localhost:4566/restapis/q7gmuuana0/local/_user_request_"
 ```
 
-Passo 1: Criar Item (POST) - Dispara Notificação SNS
+**Passo 1:** Criar Item (POST) - Dispara Notificação SNS
 Cria um novo item no banco de dados. O sistema valida os dados e envia uma notificação automática.
 ```bash
 curl -s -X POST -H "Content-Type: application/json" \
@@ -46,7 +46,7 @@ curl -s -X POST -H "Content-Type: application/json" \
 "$BASE_URL/items" | python3 -m json.tool
 ```
 
-Passo 2: Listar Itens (GET)
+**Passo 2:** Listar Itens (GET)
 Lista todos os itens cadastrados no DynamoDB.
 
 ```bash
@@ -54,13 +54,13 @@ curl -s "$BASE_URL/items" | python3 -m json.tool
 Nota: Copie o id retornado neste passo para usar no teste de exclusão.
 ```
 
-Passo 3: Verificar Logs do Subscriber (SNS)
+**Passo 3:** Verificar Logs do Subscriber (SNS)
 Verifica se a função Lambda "ouvinte" recebeu a notificação do tópico SNS.
 ```bash
 serverless logs -f snsListener | grep "SNS LISTENER"
 ```
 
-Passo 4: Remover Item (DELETE)
+**Passo 4:** Remover Item (DELETE)
 Remove o item do banco de dados (substitua o ID abaixo).
 
 ```bash
@@ -69,8 +69,8 @@ curl -s -X DELETE "$BASE_URL/items/COLE_SEU_ID_AQUI" | python3 -m json.tool
 ```
 
 ### 📦 Estrutura dos Arquivos
-serverless.yml: Configuração da infraestrutura (DynamoDB, SNS, Funções).
+**serverless.yml:** Configuração da infraestrutura (DynamoDB, SNS, Funções).
 
-handler.js: Lógica das funções Lambda (CRUD e Subscriber).
+**handler.js:** Lógica das funções Lambda (CRUD e Subscriber).
 
-docker-compose.yml: Configuração do container LocalStack.
+**docker-compose.yml:** Configuração do container LocalStack.
