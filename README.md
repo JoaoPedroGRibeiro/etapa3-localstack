@@ -20,12 +20,14 @@ Suba o container do Docker que simula os serviços da AWS (DynamoDB e SNS):
 ```bash
 docker-compose up -d
 ```
+![](./prints/docker.png)
 
 ### 3. Fazer o Deploy
 Faça a implantação da infraestrutura serverless no ambiente local:
 ```bash
 serverless deploy --stage local
 ```
+![](./prints/serverless.png)
 
 ### 🧪 Instruções de Teste
 Após o deploy, copie a URL base que apareceu no terminal (algo como http://localhost:4566/.../_user_request_) e execute os passos abaixo sequencialmente.
@@ -45,6 +47,7 @@ curl -s -X POST -H "Content-Type: application/json" \
 -d '{"nome": "Item de Teste", "status": "ATIVO"}' \
 "$BASE_URL/items" | python3 -m json.tool
 ```
+![](./prints/post.png)
 
 **Passo 2:** Listar Itens (GET)
 Lista todos os itens cadastrados no DynamoDB.
@@ -53,12 +56,14 @@ Lista todos os itens cadastrados no DynamoDB.
 curl -s "$BASE_URL/items" | python3 -m json.tool
 Nota: Copie o id retornado neste passo para usar no teste de exclusão.
 ```
+![](./prints/get.png)
 
 **Passo 3:** Verificar Logs do Subscriber (SNS)
 Verifica se a função Lambda "ouvinte" recebeu a notificação do tópico SNS.
 ```bash
 serverless logs -f snsListener | grep "SNS LISTENER"
 ```
+![](./prints/sns.png)
 
 **Passo 4:** Remover Item (DELETE)
 Remove o item do banco de dados (substitua o ID abaixo).
@@ -67,6 +72,7 @@ Remove o item do banco de dados (substitua o ID abaixo).
 # Exemplo de uso: .../items/b4f123-abc...
 curl -s -X DELETE "$BASE_URL/items/COLE_SEU_ID_AQUI" | python3 -m json.tool
 ```
+![](./prints/delete.png)
 
 ### 📦 Estrutura dos Arquivos
 **serverless.yml:** Configuração da infraestrutura (DynamoDB, SNS, Funções).
